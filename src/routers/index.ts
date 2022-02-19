@@ -67,19 +67,37 @@ router.get('/web3/transaction', async function(req: Request, res: Response, next
   res.send({ transaction });
 });
 
+router.get('/web3/subscribe', async function(req: Request, res: Response, next: NextFunction) {
+  const sub = ethereum.subscribe('syncing', (error, result) => {
+    if (error) {
+      console.error(error);
+      throw new Error(error.message);
+    }
+    console.log(result)
+  });
+  sub.on('data', (data) => { console.log('data', data) });
+  sub.on('connected', (data) => { console.log('connected', data) });
+  sub.on('error', (data) => { console.log('error', data) });
+  sub.on('changed', (data) => { console.log('changed', data) });
+  const isSyncing = await ethereum.isSyncing();
+  res.send({ isSyncing });
+});
+
 router.get('/web3/network', async function(req: Request, res: Response, next: NextFunction) {
   const addresses = await ethereum.getAccounts();
   const chainId = await ethereum.getChainId();
   const node = await ethereum.getNodeInfo();
 
   const blockNumber = await ethereum.getBlockNumber();
-  const blockPromises: Promise<any>[] = [];
-  for (let i = 0; i <= blockNumber; i++) {
-    blockPromises.push(ethereum.getBlock(i));
-  }
-  const blocks = await Promise.all(blockPromises);
 
-  res.send({ chainId, addresses, node, blocks });
+  const currentBlock = await ethereum.getBlock(blockNumber);
+  // const blockPromises: Promise<any>[] = [];
+  // for (let i = 0; i <= blockNumber; i++) {
+  //   blockPromises.push(ethereum.getBlock(i));
+  // }
+  // const blocks = await Promise.all(blockPromises);
+
+  res.send({ chainId, addresses, node, currentBlock });
 });
 
 /*
