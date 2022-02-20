@@ -39,7 +39,7 @@ export interface EthBlock {
     sha3Uncles: string,
     size: number,
     stateRoot: string,
-    timestamp: number,
+    timestamp: number | string,
     totalDifficulty: number,
     transactions: string[],
     transactionsRoot: string,

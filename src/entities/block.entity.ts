@@ -1,8 +1,8 @@
-import {Column, CreateDateColumn, Entity, Index, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, CreateDateColumn, Entity, BaseEntity, PrimaryGeneratedColumn} from 'typeorm';
 import {EthBlock} from '../types/block';
 
 @Entity({name: 'ethereumBlcocks'})
-export class EthereumBlock implements EthBlock {
+export class EthereumBlock extends BaseEntity implements EthBlock {
   @PrimaryGeneratedColumn({type: 'bigint', unsigned: true})
   id: string;
 
@@ -22,7 +22,7 @@ export class EthereumBlock implements EthBlock {
   hash: string;
 
   // 블룸필터: 블록에 특정 정보있는지 요청하면서, 익명성 보장하며 데이터 겟
-  @Column('varchar', {comment: '데이터 요청때 쓰이는 블룸필터용 데이터'})
+  @Column('text', {comment: '데이터 요청때 쓰이는 블룸필터용 데이터'})
   logsBloom: string;
 
   @Column('varchar', {comment: '블록 채굴한 마이너 주소 (보상겟)'})
@@ -53,13 +53,13 @@ export class EthereumBlock implements EthBlock {
   @Column('varchar', {comment: '블록상태 루트해시 (3state)'})
   stateRoot: string;
 
-  @Column('int', {comment: '블록 생성날짜'})
-  timestamp: number;
+  @Column('varchar', {comment: '블록 생성날짜'})
+  timestamp: string;
 
   @Column('int', {comment: '전블록과 현블록의 난이도합'})
   totalDifficulty: number;
 
-  @Column('int', {comment: '블록에 담긴 트랜잭션들'})
+  @Column('simple-array', {comment: '블록에 담긴 트랜잭션들'})
   transactions: string[];
 
   @Column('varchar', {comment: '트랜잭션 루트해시 (3state)'})
