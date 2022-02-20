@@ -6,7 +6,10 @@
   "scripts": {
     "start": "ts-node src/server.ts",
     "start:watch": "nodemon --watch '/src/**/*.ts' --exec 'ts-node' src/server.ts",
-    "db:on": "docker-compose up -d"
+    "db:on": "docker-compose up -d",
+    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run --config src/migrations/migration-target.json",
+    "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate --config src/migrations/migration-target.json -d ./src/migrations/histories/",
+    "docker:build": "docker build -t geth_ubuntu:1 ."
   },
   "keywords": [],
   "author": "",
@@ -14,6 +17,7 @@
   "dependencies": {
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
+    "mysql2": "^2.3.3",
     "typeorm": "^0.2.42",
     "web3": "^1.7.0"
   },
