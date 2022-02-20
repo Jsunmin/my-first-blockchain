@@ -1,5 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import {createConnection} from 'typeorm';
+import {typeormConfig} from './typeorm/config';
 import { HttpError } from './utils/httpError';
 import AllRouters from './routers';
 
@@ -24,6 +26,16 @@ app.use((error: HttpError, _req: express.Request, res: express.Response, _next: 
 
 app.use('/', AllRouters);
 
-app.listen(port, () => {
-  console.log(`server start on ${port}`);
+// server run
+createConnection(typeormConfig).then((db) => {
+  console.log('database connected');
+
+  app.listen(port, () => {
+    console.log(`server start on ${port}`);
+  });
+}).catch(e => {
+  console.error(e);
+  throw new Error(e);
 });
+
+

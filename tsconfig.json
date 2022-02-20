@@ -7,7 +7,9 @@
         "outDir": "dist",
         "lib": ["es6"],
         "esModuleInterop": true,
-        "useUnknownInCatchVariables": false
+        "useUnknownInCatchVariables": false,
+        "experimentalDecorators": true,
+        "strictPropertyInitialization": false
     },
     "include": [
         "src/**/*.ts",

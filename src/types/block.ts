@@ -1,0 +1,47 @@
+/**
+ {
+    difficulty: 147595,
+    extraData: "0xd883010a10846765746888676f312e31372e35856c696e7578",
+    gasLimit: 2708866,
+    gasUsed: 21544,
+    hash: "0x49ddb60df0b7a50ea4fc65a7522d4b67110f9754bb83fdd81bef612d4bf91d88",
+    logsBloom: "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    miner: "0xe1cd5234577e1bbdef622f5fd72d9296331baac5",
+    mixHash: "0xdf9bb26baf88fd15ea2d3104e3a01f58cd8b4c68bbd03a2cdc3421a2e7545b0e",
+    nonce: "0x728b2e9c1494c7a3",
+    number: 261,
+    parentHash: "0xc37ce9eb2d897c899b32bd2e5e4552c5a952426dc6d7ccf85770717cd4983531",
+    receiptsRoot: "0x8bc9adf052bade784dcf99ab2719d59da12e64534f0cd67f915e2493a6be6c43",
+    sha3Uncles: "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+    size: 660,
+    stateRoot: "0xf3bc17a6b4be50597cedbba7cf1465a07d95ea3dc2a62dc3aa7cce18e7c811b4",
+    timestamp: 1645186517,
+    totalDifficulty: 36368488,
+    transactions: ["0xeca6076ee0d4a4d019e5992f16fbd0171ab792ba7980fb55bc1400558d6ed643"],
+    transactionsRoot: "0x10264e800fffced834492e7eb35ced983bb793c89223dd56237105d492dbc4cc",
+    uncles: []
+ }
+ */
+
+export interface EthBlock {
+    difficulty: number,
+    extraData: string,
+    gasLimit: number,
+    gasUsed: number,
+    hash: string,
+    logsBloom: string,
+    miner: string,
+    mixHash: string,
+    nonce: string,
+    number: number,
+    parentHash: string,
+    receiptsRoot: string,
+    sha3Uncles: string,
+    size: number,
+    stateRoot: string,
+    timestamp: number,
+    totalDifficulty: number,
+    transactions: string[],
+    transactionsRoot: string,
+    uncles: string[]
+}
