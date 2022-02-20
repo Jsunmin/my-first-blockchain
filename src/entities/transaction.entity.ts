@@ -1,34 +1,34 @@
-import {Column, CreateDateColumn, Entity, Index, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, CreateDateColumn, Entity, BaseEntity, PrimaryGeneratedColumn} from 'typeorm';
 import {EthTransaction} from '../types/transaction';
 
 @Entity({name: 'ethereumTransactions'})
-export class EthereumTransaction implements EthTransaction {
+export class EthereumTransaction extends BaseEntity implements EthTransaction {
   @PrimaryGeneratedColumn({type: 'bigint', unsigned: true})
   id: string;
 
-  @Column({type: 'varchar', comment: '트랜잭션 위치 블록 해시'})
-  blockHash: string;
+  @Column({type: 'varchar', nullable: true, comment: '트랜잭션 위치 블록 해시'})
+  blockHash: string | null;
 
-  @Column('int', {comment: '트랜잭션 위치 블록 번호'})
-  blockNumber: number;
+  @Column('int', {nullable: true, comment: '트랜잭션 위치 블록 번호'})
+  blockNumber: number | null;
 
-  @Column('int', {comment: '블록내 트랜잭션 위치 (배열 인덱스)'})
-  transactionIndex: number;
+  @Column('int', {nullable: true, comment: '블록내 트랜잭션 위치 (배열 인덱스)'})
+  transactionIndex: number | null;
 
   @Column({type: 'varchar', comment: '송신 주소'})
   from: string;
 
-  @Column({type: 'varchar', comment: '수신 주소'})
-  to: string;
+  @Column({type: 'varchar', nullable: true, comment: '수신 주소'})
+  to: string | null;
 
-  @Column('int', {comment: '송신금액 (wei)'})
-  value: number;
+  @Column({type: 'varchar', comment: '송신금액 (wei)'})
+  value: string;
 
   @Column('int', {comment: 'gas 소비량'})
   gas: number;
 
-  @Column('int', {comment: 'gas 가격 (wei)'})
-  gasPrice: number;
+  @Column({type: 'varchar', comment: 'gas 가격 (wei)'})
+  gasPrice: string;
   
   @Column({type: 'varchar', comment: '트랜잭션 해시'})
   hash: string;

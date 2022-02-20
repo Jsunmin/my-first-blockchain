@@ -19,19 +19,21 @@
  */
 
 export interface EthTransaction {
-    blockHash: string,
-    blockNumber: number,
+    blockHash: string | null,
+    blockNumber: number | null,
     from: string,
     gas: number,
-    gasPrice: number,
+    gasPrice: string,
     hash: string,
     input: string,
     nonce: number,
     r: string,
     s: string,
-    to: string,
-    transactionIndex: number,
+    to: string | null,
+    transactionIndex: number | null,
     type: string,
     v: string,
-    value: number
+    value: string
+    maxPriorityFeePerGas?: string,
+    maxFeePerGas?: string,
 }

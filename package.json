@@ -6,11 +6,11 @@
   "scripts": {
     "start": "ts-node src/server.ts",
     "start:watch": "nodemon --watch '/src/**/*.ts' --exec 'ts-node' src/server.ts",
-    "db:on": "docker-compose up -d",
     "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run --config src/migrations/migration-target.json",
     "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate --config src/migrations/migration-target.json -d ./src/migrations/histories/",
     "docker:build": "docker build -t geth_ubuntu:1 .",
-    "docker:run": "docker run -itd -p 8545:8545 --name geth-client geth_ubuntu:1"
+    "docker:on": "docker-compose up -d",
+    "ganache:on": "npx ganache"
   },
   "keywords": [],
   "author": "",
@@ -25,7 +25,9 @@
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.17",
+    "ganache": "^7.0.2",
     "nodemon": "^2.0.15",
+    "pm2": "^5.2.0",
     "ts-node": "^10.5.0",
     "typescript": "^4.5.5"
   }
