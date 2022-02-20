@@ -11,3 +11,10 @@ services:
       MYSQL_DATABASE: blockchain
       MYSQL_USER: smj
       MYSQL_PASSWORD: qwer1234
+
+  gethClient:
+    image: geth_ubuntu:1
+    restart: always
+    ports:
+      - "8545:8545"
+    command: geth --syncmode light --http --http.addr="0.0.0.0"

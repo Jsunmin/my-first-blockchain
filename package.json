@@ -9,7 +9,8 @@
     "db:on": "docker-compose up -d",
     "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run --config src/migrations/migration-target.json",
     "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate --config src/migrations/migration-target.json -d ./src/migrations/histories/",
-    "docker:build": "docker build -t geth_ubuntu:1 ."
+    "docker:build": "docker build -t geth_ubuntu:1 .",
+    "docker:run": "docker run -itd -p 8545:8545 --name geth-client geth_ubuntu:1"
   },
   "keywords": [],
   "author": "",

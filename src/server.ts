@@ -2,8 +2,9 @@ import express from 'express';
 import dotenv from 'dotenv';
 import {createConnection} from 'typeorm';
 import {typeormConfig} from './typeorm/config';
-import { HttpError } from './utils/httpError';
+import {HttpError} from './utils/httpError';
 import AllRouters from './routers';
+import {ethereum} from './utils/web3';
 
 dotenv.config();
 
@@ -27,9 +28,12 @@ app.use((error: HttpError, _req: express.Request, res: express.Response, _next: 
 app.use('/', AllRouters);
 
 // server run
-createConnection(typeormConfig).then((db) => {
+createConnection(typeormConfig).then(async () => {
   console.log('database connected');
-
+  const gethClientConnection = await ethereum.net.isListening();
+  if (!gethClientConnection) {
+    throw new Error('geth Client is not connected!');
+  }
   app.listen(port, () => {
     console.log(`server start on ${port}`);
   });
