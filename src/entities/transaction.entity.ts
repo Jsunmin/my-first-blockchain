@@ -35,7 +35,7 @@ export class EthereumTransaction extends BaseEntity implements EthTransaction {
   @Column({type: 'varchar', comment: '트랜잭션 해시'})
   hash: string;
   
-  @Column({type: 'varchar', comment: '트랜잭션에 추가 전송한 데이터'})
+  @Column({type: 'text', comment: '트랜잭션에 추가 전송한 데이터'})
   input: string;
 
   @Column({type: 'varchar', comment: '트랜잭션 시그니처 1'})

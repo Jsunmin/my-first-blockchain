@@ -7,16 +7,16 @@ export class EthereumBlock extends BaseEntity implements EthBlock {
   @PrimaryGeneratedColumn({type: 'bigint', unsigned: true})
   id: string;
 
-  @Column('int', {comment: '채굴 난이도'})
-  difficulty: number;
+  @Column('varchar', {comment: '채굴 난이도'})
+  difficulty: string;
 
   @Column('varchar', {comment: '추가 데이터'})
   extraData: string;
 
-  @Column('int', {comment: '블록에서 사용할 수 있는 가스 최대크기'})
+  @Column('int', {unsigned: true, comment: '블록에서 사용할 수 있는 가스 최대크기'})
   gasLimit: number;
 
-  @Column('int', {comment: '블록에서의 가스 사용량'})
+  @Column('int', {unsigned: true, comment: '블록에서의 가스 사용량'})
   gasUsed: number;
 
   @Column('varchar', {comment: '블록해시'})
@@ -35,7 +35,7 @@ export class EthereumBlock extends BaseEntity implements EthBlock {
   @Column('varchar', {comment: '블록 채굴 검증 데이터2'})
   nonce: string;
 
-  @Column('int', {comment: '블록 번호: genesis(0)++'})
+  @Column('int', {unsigned: true, comment: '블록 번호: genesis(0)++'})
   number: number;
 
   @Column('varchar', {comment: '체이닝한 이전블록 해시'})
@@ -57,8 +57,8 @@ export class EthereumBlock extends BaseEntity implements EthBlock {
   @Column('varchar', {comment: '블록 생성날짜'})
   timestamp: string;
 
-  @Column('int', {comment: '전블록과 현블록의 난이도합'})
-  totalDifficulty: number;
+  @Column('varchar', {comment: '전블록과 현블록의 난이도합'})
+  totalDifficulty: string;
 
   @Column('simple-array', {comment: '블록에 담긴 트랜잭션들'})
   transactions: string[];

@@ -24,7 +24,7 @@
  */
 
 export interface EthBlock {
-    difficulty: number,
+    difficulty: number | string,
     extraData: string,
     gasLimit: number,
     gasUsed: number,
@@ -40,7 +40,7 @@ export interface EthBlock {
     size: number,
     stateRoot: string,
     timestamp: number | string,
-    totalDifficulty: number,
+    totalDifficulty: number | string,
     transactions: string[],
     transactionsRoot: string,
     uncles: string[]

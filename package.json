@@ -10,7 +10,8 @@
     "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate --config src/migrations/migration-target.json -d ./src/migrations/histories/",
     "docker:build": "docker build -t geth_ubuntu:1 .",
     "docker:on": "docker-compose up -d",
-    "ganache:on": "npx ganache"
+    "ganache:on": "npx ganache",
+    "daemon:on": "npx ts-node scripts"
   },
   "keywords": [],
   "author": "",

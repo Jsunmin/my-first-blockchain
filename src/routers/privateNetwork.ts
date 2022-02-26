@@ -94,6 +94,8 @@ router.get('/blocks/:id/save', async function(req: Request, res: Response, next:
 
   const ethereumBlock = EthereumBlock.create({
     ...etheBlock,
+    difficulty: String(etheBlock.difficulty),
+    totalDifficulty: String(etheBlock.totalDifficulty),
     timestamp: String(etheBlock.timestamp),
   });
   const savedBlock = await ethereumBlock.save();
@@ -107,8 +109,13 @@ router.get('/transactions/:id', async function(req: Request, res: Response, next
   }
   const transactionId = id as string;
   const transaction = await ethereum.getTransaction(transactionId);
-  const inputString = web3.utils.hexToString(transaction.input);
-  console.log(inputString)
+
+  let inputString;
+  if (transaction && transaction.input) {
+    inputString = web3.utils.hexToString(transaction.input);
+
+  }
+  console.log(transaction, inputString, '!')
   res.send({ transaction });
 });
 
