@@ -7,9 +7,9 @@ class BlcokChain {
     private eth: Eth;
 
     constructor() {
-        this.web3 = new Web3('http://localhost:9933')
-        // this.web3 = new Web3('http://localhost:8545')
-        // this.web3 = new Web3('ws://127.0.0.1:8546')
+        // this.web3 = new Web3('http://localhost:9933') // 가나슈 로컬넷
+        this.web3 = new Web3('http://localhost:8545') // http
+        // this.web3 = new Web3('ws://127.0.0.1:8546') // ws
         this.eth = this.web3.eth;
     }
     getEth() {

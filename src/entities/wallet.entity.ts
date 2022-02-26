@@ -27,4 +27,7 @@ export class WalletEntity extends BaseEntity {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  // 계정 잔액
+  balance?: string;
 }

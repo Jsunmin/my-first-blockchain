@@ -5,8 +5,7 @@ import {ethereum, web3} from '../helper/web3';
 const router = express.Router();
 
 router.get('/', function(req: Request, res: Response, next: NextFunction) {
-  console.log('start:watch')
-  res.send('Hello');
+  res.send('healthcheck');
 });
 
 router.get('/web3', async function(req: Request, res: Response, next: NextFunction) {
