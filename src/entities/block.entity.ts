@@ -1,6 +1,7 @@
-import {Column, CreateDateColumn, Entity, BaseEntity, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, CreateDateColumn, Entity, BaseEntity, PrimaryGeneratedColumn, Index} from 'typeorm';
 import {EthBlock} from '../types/block';
 
+@Index('blockNumberIndex', ['number'])
 @Entity({name: 'ethereumBlcocks'})
 export class EthereumBlock extends BaseEntity implements EthBlock {
   @PrimaryGeneratedColumn({type: 'bigint', unsigned: true})
@@ -9,7 +10,7 @@ export class EthereumBlock extends BaseEntity implements EthBlock {
   @Column('int', {comment: '채굴 난이도'})
   difficulty: number;
 
-  @Column('varchar', {comment: '채굴 난이도'})
+  @Column('varchar', {comment: '추가 데이터'})
   extraData: string;
 
   @Column('int', {comment: '블록에서 사용할 수 있는 가스 최대크기'})

@@ -1,6 +1,8 @@
-import {Column, CreateDateColumn, Entity, BaseEntity, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, CreateDateColumn, Entity, BaseEntity, PrimaryGeneratedColumn, Index} from 'typeorm';
 import {EthTransaction} from '../types/transaction';
 
+@Index('blockNumberIndex', ['blockNumber'])
+@Index('hashIndex', ['hash'])
 @Entity({name: 'ethereumTransactions'})
 export class EthereumTransaction extends BaseEntity implements EthTransaction {
   @PrimaryGeneratedColumn({type: 'bigint', unsigned: true})

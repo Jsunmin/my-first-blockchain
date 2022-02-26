@@ -1,6 +1,6 @@
 import express from 'express';
 import { NextFunction, Request, Response } from 'express';
-import {ethereum, web3} from '../utils/web3';
+import {ethereum, web3} from '../helper/web3';
 
 const router = express.Router();
 

@@ -2,10 +2,11 @@ import express from 'express';
 import dotenv from 'dotenv';
 import {createConnection} from 'typeorm';
 import {typeormConfig} from './typeorm/config';
-import {HttpError} from './utils/httpError';
+import {HttpError} from './httpError';
 import AllRouters from './routers';
 import PNRouters from './routers/privateNetwork';
-import {ethereum} from './utils/web3';
+import WalletRouters from './routers/wallet';
+import {ethereum} from './helper/web3';
 
 dotenv.config();
 
@@ -15,19 +16,10 @@ const app = express();
 
 app.use(express.json()); 
 app.use(express.urlencoded({ extended : false }));
-app.use((error: HttpError, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
-  const code = error.status || 500;
-  const message = error.message || 'Internal Server Error';
-  res.status(code);
-  res.send({
-    code,
-    message,
-    info: error.info,
-  });
-});
 
 app.use('/', AllRouters);
 app.use('/pn', PNRouters);
+app.use('/wallets', WalletRouters);
 
 // server run
 createConnection(typeormConfig).then(async () => {
@@ -44,4 +36,13 @@ createConnection(typeormConfig).then(async () => {
   throw new Error(e);
 });
 
-
+app.use((error: HttpError, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
+  const code = error.status || 500;
+  const message = error.message || 'Internal Server Error';
+  res.status(code);
+  res.send({
+    code,
+    message,
+    info: error.info,
+  });
+});
