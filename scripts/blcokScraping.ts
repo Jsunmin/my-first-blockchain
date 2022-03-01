@@ -4,7 +4,7 @@ import {sleep} from './utils';
 import {ethereum} from './web3';
 
 export default async function main() {
-  let startBlockNumber = 0;
+  let startBlockNumber = 14288330;
   // db 데이터부터 다시 시작
   const latestBlockInDb = await EthereumBlock.find({
     order: {id : 'DESC'},

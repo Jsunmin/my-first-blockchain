@@ -5,7 +5,7 @@ import {sleep} from './utils';
 import {ethereum, web3} from './web3';
 
 export default async function main() {
-  let startBlockNumber = 14281400;
+  let startBlockNumber = 14288330;
   // db 데이터부터 다시 시작
   const [latestTransactionInDb] = await EthereumTransaction.find({
     order: {id : 'DESC'},
@@ -49,7 +49,7 @@ export default async function main() {
           // if (transaction && transaction.input) {
           //   inputString = web3.utils.hexToString(transaction.input);
           // }
-          console.log(transaction.input, '~~')
+
           return EthereumTransaction.create({
             blockHash: transaction.blockHash,
             blockNumber: transaction.blockNumber,
@@ -71,7 +71,7 @@ export default async function main() {
         })
         await bulkInsertWithTypeorm(transactionsForDb);
         
-        await sleep(300);
+        await sleep(100);
       }
       
       startBlockNumber++;
